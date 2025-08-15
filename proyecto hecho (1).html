@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florium</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Encabezado */
+        header {
+            background: linear-gradient(135deg, #5cb85c, #d9534f);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        /* Logo personalizado */
+        .logo {
+            width: 280px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-main {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .logo-sub {
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            padding-top: 8px;
+            display: inline-block;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: #5cb85c;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #4cae4c;
+            transform: translateY(-2px);
+        }
+
+        /* Contenido principal */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Secciones */
+        section {
+            margin-bottom: 3rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #5cb85c;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 2rem;
+        }
+
+        /* Tarjetas de flores */
+        .flower-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            color: #5cb85c;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #5cb85c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Galería */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Pie de página */
+        footer {
+            background: linear-gradient(135deg, #5cb85c, #d9534f);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Efectos decorativos florales */
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-2.5-12.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm5 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm-2.5 5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z"/></svg>');
+            background-size: contain;
+            opacity: 0.7;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>');
+            background-size: contain;
+            opacity: 0.6;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .logo-main {
+                font-size: 2.5rem;
+            }
+
+            .logo-sub {
+                font-size: 0.9rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .flower-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-main">FLORIUM</div>
+            <div class="logo-sub">DISTRIBUIDORA DE PLANTAS</div>
+        </div>
+        
+        <!-- Elementos decorativos florales -->
+        <div class="flower" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="flower" style="top: 30%; right: 15%; animation-delay: 1s;"></div>
+        <div class="petal" style="bottom: 20%; left: 20%; animation-delay: 2s;"></div>
+        <div class="petal" style="bottom: 30%; right: 10%; animation-delay: 3s;"></div>
+        <div class="flower" style="top: 50%; left: 5%; animation-delay: 1.5s;"></div>
+        <div class="petal" style="bottom: 40%; right: 5%; animation-delay: 2.5s;"></div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#flores-exoticas">Flores Exóticas</a></li>
+            <li><a href="#plantas-interior">Plantas de Interior</a></li>
+            <li><a href="#jardineria">Jardinería</a></li>
+            <li><a href="#flores-extincion">En Peligro</a></li>
+          
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="flores-exoticas">
+            <h2>Flores Exóticas del Mundo</h2>
+            <p>Descubre las flores más asombrosas y raras que la naturaleza ha creado, desde las selvas tropicales hasta los desiertos más áridos.</p>
+            
+            <div class="flower-cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor exótica">
+                    </div>
+                    <div class="card-content">
+                        <h3>Orquídeas</h3>
+                        <p>Con más de 25,000 especies, las orquídeas son una de las familias de plantas más diversas y hermosas del planeta.</p>
+                        <a href="Cuidados.html" class="btn">Guia de Cuidados</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor de loto">
+                    </div>
+                    <div class="card-content">
+                        <h3>Flor de Loto</h3>
+                        <p>Símbolo sagrado en muchas culturas asiáticas, esta hermosa flor crece en aguas pantanosas y se abre cada mañana.</p>
+                        <a href="Cuidados.html" class="btn">Guia de Cuidados</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor de cerezo">
+                    </div>
+                    <div class="card-content">
+                        <h3>Flor de Cerezo</h3>
+                        <p>Emblema de Japón, estas efímeras flores simbolizan la belleza fugaz de la vida y atraen a millones de visitantes cada primavera.</p>
+                        <a href="Cuidados.html" class="btn">Guia de Cuidados</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plantas-interior">
+            <h2>Plantas de Interior</h2>
+            <p>Transforma tu hogar en un oasis verde con estas hermosas plantas que purifican el aire y añaden vida a cualquier espacio.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Plantas de interior">
+
+                </div>
+                <h3>Cactus de Interior</h3>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Suculentas">
+                      
+                </div>
+                <h3>Costilla de Adán</h3>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cactus">
+                      
+                </div>
+                <h3>Suculentas Variadas</h3>
+                <div class="gallery-item">
+                 
+                   <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cactus de Interior">
+                   
+                </div>
+                 <h3>Poto</h3>
+
+
+            </div>
+        </section>
+
+        <section id="flores-extincion">
+            <h2>Flores en Peligro de Extinción</h2>
+            <p>Conoce las especies florales más amenazadas del planeta y cómo podemos ayudar a preservarlas para las futuras generaciones.</p>
+            
+            <div class="flower-cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor en peligro">
+                    </div>
+                    <div class="card-content">
+                        <h3>Rafflesia Arnoldii</h3>
+                        <p>La flor más grande del mundo, que puede alcanzar 1 metro de diámetro, está en peligro debido a la deforestación en Indonesia.</p>
+                        <a href="Cuidados.html" class="btn">Cómo ayudar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1534710961216-75c88202f43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Orquídea fantasma">
+                    </div>
+                    <div class="card-content">
+                        <h3>Orquídea Fantasma</h3>
+                        <p>Esta rara orquídea, que parece flotar en el aire como un fantasma, está desapareciendo debido a la pérdida de hábitat.</p>
+                        <a href="Cuidados.html" class="btn">Cómo ayudar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1495231916356-a86217efff12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor de chocolate">
+                    </div>
+                    <div class="card-content">
+                        <h3>Flor de Chocolate</h3>
+                        <p>Originaria de México, esta flor que huele a chocolate está casi extinta en estado silvestre.</p>
+                        <a href="Cuidados.html" class="btn">Cómo ayudar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jardineria">
+            <h2>Consejos de Jardinería</h2>
+            <p>Aprende los secretos para crear y mantener un jardín floreciente en cualquier espacio, desde balcones pequeños hasta grandes patios.</p>
+            
+            <div class="flower-cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Jardinería">
+                    </div>
+                    <div class="card-content">
+                        <h3>Jardines Verticales</h3>
+                        <p>Crea un oasis verde incluso en espacios pequeños con estos consejos para jardines verticales y paredes vivas.</p>
+                        <a href="Cuidados.html" class="btn">Como ayudar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Suculentas">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cuidado de Suculentas</h3>
+                        <p>Todo lo que necesitas saber para mantener tus suculentas saludables y hermosas durante todo el año.</p>
+                        <a href="Cuidados.html" class="btn">Como ayudar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Huerto">
+                    </div>
+                    <div class="card-content">
+                        <h3>Huertos Urbanos</h3>
+                        <p>Guía completa para crear tu propio huerto en casa, incluso si solo tienes un pequeño balcón.</p>
+                        <a href="Cuidados.html" class="btn">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="contacto">
+    <h2>¿Tienes dudas? Contáctanos</h2>
+    <div class="contacto-grid">
+        <div class="contacto-info">
+            <h3>Información de contacto</h3>
+            <p><strong>📍 Dirección:</strong> Colonia Los Maestros, La Lima Cortes</p>
+            <p><strong>📧 Email:</strong> contacto@florium.com</p>
+            <p><strong>📞 Teléfono:</strong> +504 9543-5240</p>
+            <p><strong>⏰ Horario:</strong> Lunes a Viernes, 9am - 6pm</p>
+            
+            <!-- Mapa de Google Maps (opcional) -->
+           <div class="mapa">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.9628765171037!2d-87.92966042505881!3d15.432554885158414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f664157ca200a7d%3A0x6a8c08ed8f14430!2sInstituto%20Patria%20de%20La%20Lima!5e0!3m2!1sen!2shn!4v1754795434081!5m2!1sen!2shn"
+                            width="100%" 
+                            height="250" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+            
+            <!-- Redes Sociales -->
+           
+        
+        <!-- Formulario -->
+       
+</section>
+
+    <footer>
+        <p>© 2025 Florium - Todos los derechos reservados</p>
+        <p>Únete a nuestra comunidad de amantes de las plantas</p>
+        
+        <div class="social-links">        
+            <a href="https://instagram.com/florium_lima" aria-label="Instagram">📷</a>
+        </div>
+    </footer>
+</body>
+</html>     

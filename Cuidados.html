@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuidados de Plantas | Florium</title>
+    <style>
+        /* Estilos base (consistentes con tu página principal) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header y Nav (copia exacta de tu página principal) */
+        header {
+            background: linear-gradient(135deg, #5cb85c, #d9534f);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 280px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-main {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .logo-sub {
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            padding-top: 8px;
+            display: inline-block;
+        }
+
+        nav {
+            background-color: #5cb85c;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #4cae4c;
+            transform: translateY(-2px);
+        }
+
+        /* Estilos específicos para la página de cuidados */
+        .cuidados-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .cuidados-container h1 {
+            color: #5cb85c;
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .cuidados-container h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #5cb85c, #d9534f);
+            border-radius: 3px;
+        }
+
+        .cuidado-item {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #5cb85c;
+        }
+
+        .cuidado-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cuidado-item h2 {
+            color: #5cb85c;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cuidado-item h2::before {
+            content: "🌿";
+        }
+
+        .cuidado-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .cuidado-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .cuidado-item p {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .cuidado-item p::before {
+            content: "•";
+            color: #d9534f;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .cuidado-item p strong {
+            color: #5cb85c;
+        }
+
+        /* Estilos para secciones especiales */
+        .seccion-especial {
+            background: linear-gradient(135deg, rgba(92, 184, 92, 0.1), rgba(217, 83, 79, 0.1));
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border: 1px dashed #5cb85c;
+        }
+
+        .seccion-especial h1 {
+            color: #d9534f;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #5cb85c, #d9534f);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .cuidado-item {
+                padding: 1.5rem;
+            }
+
+            .cuidados-container h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-main">FLORIUM</div>
+            <div class="logo-sub">DISTRIBUIDORA DE PLANTAS</div>
+        </div>
+    </header>
+
+    <nav>
+        
+          
+    </nav>
+
+    <div class="cuidados-container">
+        <h1>Cuidados Especializados</h1>
+        
+        <div class="cuidado-item" id="orquideas">
+            <h2>Orquídeas</h2>
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Orquídeas">
+            <p><strong>Riego:</strong> Cada 7-10 días, sin encharcar.</p>
+            <p><strong>Luz:</strong> Indirecta brillante.</p>
+            <p><strong>Truco:</strong> Usa agua de lluvia o destilada.</p>
+        </div>
+        
+        <div class="cuidado-item" id="Flor de Loto">
+            <h2>Flor de Loto</h2>
+            <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor de loto">
+            <p><strong>Riego:</strong> Mantener el sustrato húmedo.</p>
+            <p><strong>Luz:</strong> Sol pleno (6+ horas diarias).</p>
+            <p><strong>Truco:</strong> Cambia el agua regularmente si está en estanque.</p>
+        </div>
+
+        <div class="cuidado-item" id="Flor de Cerezo">
+            <h2>Flor de Cerezo</h2>
+            <img src="https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor de Cerezo">
+            <p><strong>Riego:</strong> Moderado, más frecuente en verano.</p>
+            <p><strong>Luz:</strong> Pleno sol.</p>
+            <p><strong>Truco:</strong> Poda después de la floración.</p>
+        </div>
+
+        <div class="seccion-especial">
+            <h1>Cuidados para plantas en peligro de extinción</h1>
+            
+            <div class="cuidado-item" id="Rafflesia Arnoldii">
+                <h2>Rafflesia Arnoldii</h2>
+                <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rafflesia Arnoldii">
+                <p><strong>Hábitat:</strong> Selvas tropicales de Indonesia.</p>
+                <p><strong>Protección:</strong> Evitar deforestación en su hábitat.</p>
+                <p><strong>Dato:</strong> No puede cultivarse fuera de su entorno natural.</p>
+            </div>
+            
+            <div class="cuidado-item" id="Orquídea Fantasma">
+                <h2>Orquídea Fantasma</h2>
+                <img src="https://images.unsplash.com/photo-1534710961216-75c88202f43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Orquídea Fantasma">
+                <p><strong>Hábitat:</strong> Bosques húmedos de Florida y Cuba.</p>
+                <p><strong>Cuidado:</strong> No extraer de su hábitat natural.</p>
+                <p><strong>Dato:</strong> Florece solo en condiciones muy específicas.</p>
+            </div>
+            
+            <div class="cuidado-item" id="Flor de Chocolate">
+                <h2>Flor de Chocolate</h2>
+                <img src="https://images.unsplash.com/photo-1495231916356-a86217efff12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flor de Chocolate">
+                <p><strong>Hábitat:</strong> Bosques de México.</p>
+                <p><strong>Conservación:</strong> Apoya viveros que la reproduzcan legalmente.</p>
+                <p><strong>Dato:</strong> Desprende aroma a chocolate.</p>
+            </div>
+        </div>
+
+        <div class="seccion-especial">
+            <h1>Consejos sobre jardinería</h1>
+
+            <div class="cuidado-item" id="Jardines Verticales">
+                <h2>Jardines Verticales</h2>
+                <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Jardines Verticales">
+                <p><strong>Plantas ideales:</strong> Helechos, potos y suculentas.</p>
+                <p><strong>Instalación:</strong> Usa estructuras con buen drenaje.</p>
+                <p><strong>Truco:</strong> Riega de arriba hacia abajo.</p>
+            </div>
+            
+            <div class="cuidado-item" id="Cuidado de Suculentas">
+                <h2>Cuidado de Suculentas</h2>
+                <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cuidado de Suculentas">
+                <p><strong>Sustrato:</strong> Mezcla 50% tierra, 50% arena gruesa.</p>
+                <p><strong>Riego:</strong> Solo cuando el sustrato esté completamente seco.</p>
+                <p><strong>Truco:</strong> Más sol = colores más vibrantes.</p>
+            </div>
+            
+            <div class="cuidado-item" id="Huerto">
+                <h2>Huertos Urbanos</h2>
+                <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Huerto">
+                <p><strong>Para principiantes:</strong> Albahaca, tomates cherry y rábanos.</p>
+                <p><strong>Luz:</strong> Mínimo 6 horas diarias de sol.</p>
+                <p><strong>Truco:</strong> Rotación de cultivos cada temporada.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Florium - Todos los derechos reservados</p>
+        <p>Únete a nuestra comunidad de amantes de las plantas</p>
+        <div class="social-links">
+            <a href="https://instagram.com/florium_lima" aria-label="Instagram">📷</a>
+           
+        </div>
+    </footer>
+</body>
+</html>
